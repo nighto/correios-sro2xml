@@ -1,0 +1,5 @@
+
+*.suo
+/CorreioNet/obj
+/CorreioNet.Engine/obj
+/CorreioNet.Engine/bin
