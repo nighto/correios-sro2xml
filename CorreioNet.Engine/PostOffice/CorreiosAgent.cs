@@ -65,8 +65,15 @@ namespace CorreioNet.Engine.PostOffice
                         String dataString = tds[0].InnerText;
                         ev.Date = DateTime.Parse(dataString, dateCulture);
 
-                        String local = tds[1].InnerText;
-                        ev.Place = local;
+                        string[] place = tds[1].InnerText.Split("-".ToCharArray());
+                        ev.Place = place[0].Trim();
+                        if (place.Count() == 2)
+                        {
+                            string[] city = place[1].Trim().Split("/".ToCharArray());
+                            ev.City = city[0];
+                            if (city.Count() == 2)
+                                ev.UF = city[1];
+                        }
 
                         String status = tds[2].FirstChild.InnerText;
                         ev.Description = status;
