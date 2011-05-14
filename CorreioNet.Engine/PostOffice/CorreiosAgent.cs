@@ -14,6 +14,7 @@ namespace CorreioNet.Engine.PostOffice
         internal CorreiosAgent() { }
 
         private const string URL = "http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=";
+        private const string packageNotFound = "O nosso sistema não possui dados sobre o objeto informado.";
         CultureInfo dateCulture = new System.Globalization.CultureInfo("pt-BR");
 
 
@@ -32,17 +33,26 @@ namespace CorreioNet.Engine.PostOffice
                     html = client.DownloadString(finalURL);
                 }
 
-                //If something were downloaded...
+                //If something was downloaded...
                 if (!String.IsNullOrWhiteSpace(html))
                 {
                     HtmlDocument doc = new HtmlDocument();
                     doc.LoadHtml(html);
 
+                    //Jump to the first grandchild <tr>, that is, <tag1><tag2><tr>
                     var trs = doc.DocumentNode.SelectNodes("//tr");
 
+                    if (trs == null)
+                    {
+                        if (html.IndexOf(packageNotFound) != 0)
+                            throw new Exception("Package not found.");
+                        throw new Exception("no <tr> found");
+                    }
+
+                    //Skips the first <tr> as it's a header
                     foreach (HtmlNode tr in trs.Skip(1))
                     {
-
+                        //If it's a destination row "semirow", not a new table row, then we should treat it later.
                         if (tr.FirstChild.Attributes.Contains("colspan") && tr.FirstChild.Attributes["colspan"].Value == "2")
                         {
                             continue;
