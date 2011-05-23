@@ -21,7 +21,7 @@ namespace CorreioNet
         {
             try
             {
-                var eventos = PostOfficeManagerAgent.TrackObject(cmbPais.Text, txtCodigoRastreio.Text);
+                var eventos = PostOfficeManagerAgent.TrackAllEvents(cmbPais.Text, txtCodigoRastreio.Text);
 
                 if (eventos == null || eventos.Count == 0)
                     throw new Exception("Sem informações");
@@ -34,6 +34,33 @@ namespace CorreioNet
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var numb = new List<String>();
+                numb.Add("RR994368428CN");
+                numb.Add("RA086279580CN");
+                numb.Add("RT085047213HK");
+                numb.Add("RT088346945HK");
+                numb.Add("RA078008727CN");
+                numb.Add("RA078755640CN");
+                numb.Add("RA078796278CN");
+
+                var eventos = PostOfficeManagerAgent.TrackLastEvent("CN", "RA078796278CN");
+
+                
+
+                MessageBox.Show("Ok", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
         }
     }
 }
