@@ -50,7 +50,7 @@ namespace CorreioNet
                 numb.Add("RA078755640CN");
                 numb.Add("RA078796278CN");
 
-                var eventos = PostOfficeManagerAgent.TrackLastEvent(cmbPais.Text, numb);
+                var eventos = PostOfficeManagerAgent.TrackLastEvent("CN", "RA078796278CN");
 
                 
 

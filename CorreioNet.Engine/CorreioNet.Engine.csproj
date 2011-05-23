@@ -47,6 +47,7 @@
     <Compile Include="Entities\TrackingEvent.cs" />
     <Compile Include="Entities\TrackingEventDestiny.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="PostOffice\ChinaPostAgent.cs" />
     <Compile Include="PostOffice\CorreiosAgent.cs" />
     <Compile Include="PostOffice\HongKongAgent.cs" />
     <Compile Include="PostOffice\IPostOfficeAgent.cs" />

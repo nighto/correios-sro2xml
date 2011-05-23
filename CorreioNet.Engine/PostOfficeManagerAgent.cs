@@ -19,6 +19,9 @@ namespace CorreioNet.Engine
                 case "BR":
                     return new CorreiosAgent();
 
+                case "CN":
+                    return new ChinaPostAgent();
+
                 //case "HK":
                 //    return new HongKongAgent();
 
