@@ -10,6 +10,12 @@ namespace CorreioNet.Engine.Entities
     /// </summary>
     public class TrackingEvent
     {
+
+        /// <summary>
+        /// Tracking number of this event
+        /// </summary>
+        public String TrackingNumber { get; set; }
+
         /// <summary>
         /// PO = Postado, RO(internacional?),DO(nacional? sedex?) = Encaminhado, PAR = Conferido, OEC = Saiu para entrega, BDE = Resultado da entrega, IT = Passagem interna, LDI = Aguardando retirada, BDI = Resultado da retirada
         /// </summary>
